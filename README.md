@@ -1,4 +1,6 @@
-Host: dsermon.github.com
-Project Name:
-Target Audeince:
-Logo:
+|Cybersecurity Group|
+|-------------------|
+|Host: dsemon.github.com|
+|Project Name: TBD|
+|Target Audeince: TBD|
+|Logo: TBD|
