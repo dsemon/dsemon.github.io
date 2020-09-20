@@ -3,7 +3,7 @@
 |Host: dsemon.github.io|
 |Project Name: Fordham Cyber Patrol Department|
 |Target Audeince: TBD|
-|Logo: TBD|
+|Logo: I added a pdf file. Check it out. I can change it if neccessary.|
 
 
 NYPD API ENDPOINT: https://data.cityofnewyork.us/resource/fjn5-bxwg.json
