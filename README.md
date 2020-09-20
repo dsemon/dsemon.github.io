@@ -1,7 +1,7 @@
 |Cybersecurity Group|
 |-------------------|
 |Host: dsemon.github.io|
-|Project Name: TBD|
+|Project Name: Fordham Cyber Patrol Department|
 |Target Audeince: TBD|
 |Logo: TBD|
 
