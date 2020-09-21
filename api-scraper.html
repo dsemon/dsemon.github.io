@@ -2,18 +2,33 @@
 <html>
 <head>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript"> // SOCRATA API CALL, using jQuery
+<script type="text/javascript">  // Socrata API CALL, using jQuery
   $.ajax({
-      url: "https://data.cityofnewyork.us/resource/fjn5-bxwg.json?incident_zip=10458",
+      url: "https://data.cityofnewyork.us/resource/fjn5-bxwg.json?incident_zip=10458",  // zip query specified in url
       type: "GET",
       data: {
-        "$limit" : 10,
-        "$$app_token" : "" // Leave empty, we can still get public data w/o token
+        "$limit" : 10,  // Pull number of entries
+        "$$app_token" : ""  // Leave empty, we can still get public data w/o token
       }
   }).done(function(data) {
+
+    // Create today's date
+    var today = new Date();  // create date object instance
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');  //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;  // match formatting of API dates
+
+    // Determine if report date is equal to today's date
     alert("Retrieved " + data.length + " records from the dataset!");
-    console.log(data);
+    for (var key of Object.keys(data)) {
+      var report_date = data[key].created_date.slice(0,10);  // date formatting, 0's added for single digits already
+      if (report_date == today) {  // if report is also today's date
+        console.log(data[key])  // print the matching objects
+      }
+    }
   });
 </script>
 </head>
 </html>
+
