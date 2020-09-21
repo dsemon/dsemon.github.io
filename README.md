@@ -8,3 +8,4 @@
 
 
 NYPD API ENDPOINT: https://data.cityofnewyork.us/resource/fjn5-bxwg.json
+Twitter API Documentation: https://developer.twitter.com/en/docs/twitter-api
