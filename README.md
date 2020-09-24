@@ -5,6 +5,8 @@
 |Target Audeince: Fordham Students|
 |Logo: See logo and banner above.|
 
+___________________________________
+
 ### ToDo
 
 - [ ] Wireframe
@@ -12,6 +14,9 @@
 - [ ] Twitter API Integration
 - [ ] NYPD API Scraper Integration
 
+___________________________________
+
+### Links
 
 NYPD API ENDPOINT: https://data.cityofnewyork.us/resource/fjn5-bxwg.json
 
