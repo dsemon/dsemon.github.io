@@ -13,6 +13,7 @@ ___________________________________
 - [ ] HTML and CSS Beginning w/ Banner, Logo, and Favicon
 - [ ] Twitter API Integration
 - [ ] NYPD API Scraper Integration
+  - [ ] Connect to twitter and tweet info to our account
 
 ___________________________________
 
