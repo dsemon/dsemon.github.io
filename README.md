@@ -3,7 +3,7 @@
 |Host: dsemon.github.io|
 |Project Name: Fordham Cyber Patrol Department|
 |Target Audeince: Fordham Students|
-|Logo: See logo and banner above.|
+|Logo: See logo and banner above|
 
 ___________________________________
 
