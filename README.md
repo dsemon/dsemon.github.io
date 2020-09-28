@@ -22,4 +22,4 @@ NYPD API ENDPOINT: https://data.cityofnewyork.us/resource/fjn5-bxwg.json
 
 Twitter API Documentation: https://developer.twitter.com/en/docs/twitter-api
 
-Twitter Account: twitter.com/fordhamcyberpa1
+Twitter Account: https://twitter.com/fordhamcyberpa1
