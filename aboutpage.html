@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cyber Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+    body, html {
+      height: 100%;
+      color: #777;
+      line-height: 1.8;
+    }
+    
+    /* Create a Parallax Effect */
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    /* First image (Logo. Full height) */
+    .bgimg-1 {
+      background-image: url('bannerFULL.png');
+      min-height: 100%;
+    }
+    
+    .w3-wide {letter-spacing: 10px;}
+    .w3-hover-opacity {cursor: pointer;}
+    
+    /* Turn off parallax scrolling for tablets and phones */
+    @media only screen and (max-device-width: 1600px) {
+      .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+        min-height: 200px;
+      }
+    }
+    .grid-item1{grid-area: TopLeft}
+    .grid-item2{grid-area: TopCenter}
+    .grid-item3{grid-area: TopRight}
+    .grid-item4{grid-area: BotLeft}
+    .grid-item5{grid-area: BotCenter}
+    .grid-item6{grid-area: BotRight}
+
+    .AboutGrid{
+      display: grid;
+      grid-template-areas: 
+      'TopLeft TopCenter TopRight'
+      'BotLeft BotCenter BotRight';
+      text-align: center;
+      padding: 10px;
+      grid-gap: 30px;
+
+    } 
+    </style>
+    </head><body>
+    
+  
+    <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+      <div class="w3-display-middle" style="white-space:nowrap;">
+      </div>
+    </div>
+    
+
+    <div class="w3-content w3-container w3-padding-64" id="about">
+      <h2 class="w3-center">About Us</h2>
+      <div class="AboutGrid">
+        <div class="grid-item1">
+          <h3>Kyle</h3>
+          <p>Here will be info about Kyle, such as year, major, and contact information</p>
+        </div>
+        <div class="grid-item2">
+          <h3>Derek</h3>
+          <p>Here will be info about Derek, such as year, major, and contact information</p>
+        </div>
+        <div class="grid-item3">
+          <h3>Brandon</h3>
+          <p>Here will be info about Brandon, such as year, major, and contact information</p>
+        </div>
+        <div class="grid-item4">
+          <h3>Jake</h3>
+          <p>Here will be info about Jake, such as year, major, and contact information</p>
+        </div>
+        <div class="grid-item5">
+          <h3>Tommy</h3>
+          <p>Here will be info about Tommy, such as year, major, and contact information</p>
+        </div>
+        <div class="grid-item6">
+          <h3>Michael</h3>
+          <p>Here will be info about Michael, such as year, major, and contact information</p>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+      <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+      <div class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+    </footer>
+     
+    <script>
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+    
+    // Change style of navbar on scroll
+    window.onscroll = function() {myFunction()};
+    function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+        } else {
+            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+        }
+    }
+    
+  
+    function toggleFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+    </script>
+    
+    
+    
+    </body></html>
