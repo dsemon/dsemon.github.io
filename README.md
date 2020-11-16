@@ -9,11 +9,7 @@ ___________________________________
 
 ### ToDo
 
-- [ ] Wireframe
-- [ ] HTML and CSS Beginning w/ Banner, Logo, and Favicon
-  - [ ] Twitter Timeline Integration (embed)
-- [ ] Add Twitter/NYPD js file to page
-- [ ] Get host
+- [ ] 
 
 ___________________________________
 
