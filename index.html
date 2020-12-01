@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="images/favicon.png">
     <style>
     body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
     body, html {
@@ -39,65 +40,36 @@
         min-height: 200px;
       }
     }
-    .grid-item1{grid-area: TopLeft}
-    .grid-item2{grid-area: TopCenter}
-    .grid-item3{grid-area: TopRight}
-    .grid-item4{grid-area: BotLeft}
-    .grid-item5{grid-area: BotCenter}
-    .grid-item6{grid-area: BotRight}
-
-    .AboutGrid{
-      display: grid;
-      grid-template-areas: 
-      'TopLeft TopCenter TopRight'
-      'BotLeft BotCenter BotRight';
-      text-align: center;
-      padding: 10px;
-      grid-gap: 30px;
-
-    } 
     </style>
     </head><body>
     
-  
+    <!-- First Parallax Image with Logo Text -->
     <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
       <div class="w3-display-middle" style="white-space:nowrap;">
       </div>
     </div>
     
-
+    <!-- Container (About Section) -->
     <div class="w3-content w3-container w3-padding-64" id="about">
-      <h2 class="w3-center">About Us</h2>
-      <div class="AboutGrid">
-        <div class="grid-item1">
-          <h3><a href="https://storm.cis.fordham.edu/~ktimmermans/index.html">Kyle</a></h3>
-          <p>Kyle is a Senior at Fordham in the class of 2021 and is pursuing a Bachelors of Science in Computer Science and minoring in Cybersecurity. He is also part of the Men's Rowing team.</p>
-        </div>
-        <div class="grid-item2">
-          <h3><a href="https://storm.cis.fordham.edu/~dsemon/aboutMe.html">Derek</a></h3>
-          <p>Derek is a senior computer science major at Fordham with a minor in cybersecurity. He is also currently the president of Fordham's Computer Science Society.</p>
-        </div>
-        <div class="grid-item3">
-          <h3><a href="https://storm.cis.fordham.edu/~bbaker/index.html">Brandon</a></h3>
-          <p>Philosophy major with professional experience in cybersecurity. Spends too much money on video games and electronics.</p>
-        </div>
-        <div class="grid-item4">
-          <h3><a href="https://storm.cis.fordham.edu/~jhack/CISC2500/easy.html">Jake</a></h3>
-          <p>Jake is a senior at Fordham University (2021) pursuing a Bachelors of Science for Computer Science with a minor in Cybersecurity</p>
-        </div>
-        <div class="grid-item5">
-          <h3><a href="https://storm.cis.fordham.edu/~tnalls/AboutTommy.html">Tommy</a></h3>
-          <p>Tommy is a junior at Fordham University (2022) pursuing a degree in Integrative Neuroscience with a minor in music.</p>
-        </div>
-        <div class="grid-item6">
-          <h3><a href="https://storm.cis.fordham.edu/~mhatch7/Aboutme.html">Michael</a></h3>
-          <p>Michael is a Junior at Fordham University pursuing a degree in Economics with a minor in Cybersecurity</p>
+      <h3 class="w3-center">IMPORTANT UPDATES</h3>
+      <p class="w3-center"><em>Important updates pulled from different police databases will be added here.</em></p>
+      <p>Twitter Information</p>
+      <div class="w3-row">
+        
+    
+        <!-- Hide this text on small devices -->
+        <div class="w3-col m6 w3-hide-small w3-padding-large">
+          <p>Users tagging our twitter account will have their information added here based on most recent posts.</p>
         </div>
       </div>
     </div>
     
+    <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
-      <a href="index.html" class="w3-button w3-light-grey"></i>Home</a>
+      <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+      <div>
+        <a href="aboutpage.html" class="w3-button w3-light-grey w3-margin"></i>About Us</a>
+      </div>
       <div class="w3-xlarge w3-section">
         <i class="fa fa-facebook-official w3-hover-opacity"></i>
         <i class="fa fa-instagram w3-hover-opacity"></i>
@@ -128,7 +100,7 @@
         }
     }
     
-  
+    // Used to toggle the menu on small screens when clicking on the menu button
     function toggleFunction() {
         var x = document.getElementById("navDemo");
         if (x.className.indexOf("w3-show") == -1) {
