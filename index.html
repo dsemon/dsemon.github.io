@@ -59,9 +59,24 @@
     
         <!-- Hide this text on small devices -->
         <div class="w3-col m6 w3-hide-small w3-padding-large">
-          <p>Users tagging our twitter account will have their information added here based on most recent posts.</p>
+          <p>Users tagging our twitter account will have their information added here based on most recent posts.</p><br><br>
         </div>
       </div>
+      <p><b>Post comments by using our form below!</b></p>
+      <form name="comments" action="comments.php" method="post">
+        <div>
+          <label>Enter Name:</label>
+          <input type="text" name="name" id="name">
+          <br>
+          <label>Enter Email:</label>
+          <input type="text" name="email" id="email">
+          <br>
+          <textarea id="w3review" name="w3review" rows="4" cols="50" name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+            Write Report Here!
+          </textarea>
+        </div>
+          <input type="submit" value="Submit">
+      </form>
     </div>
     
     <!-- Footer -->
@@ -71,12 +86,13 @@
         <a href="aboutpage.html" class="w3-button w3-light-grey w3-margin"></i>About Us</a>
       </div>
       <div class="w3-xlarge w3-section">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapchat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
+        <a href="https://www.facebook.com" class ="fa fa-facebook-official w3-hover-opacity"></a>
+        <a href="https://www.instagram.com" class ="fa fa-instagram w3-hover-opacity"></a>
+        <a href="https://www.snapchat.com" class ="fa fa-snapchat w3-hover-opacity"></a>
+        <a href="https://www.pinterest.com" class ="fa fa-pinterest w3-hover-opacity"></a>
+        <a href="https://twitter.com/fordhamcyberpa1" class ="fa fa-twitter w3-hover-opacity"></a>
+        <a href="https://www.linkedin.com" class ="fa fa-linkedin w3-hover-opacity"></a>
+
       </div>
     </footer>
      
