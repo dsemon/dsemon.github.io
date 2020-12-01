@@ -1,7 +1,21 @@
+
 // NodeJS
 // npm install jsdom, jquery, twitter, sleep
-// script runs every 10 seconds
 
+// Load webpage with default NodeJS webserver
+var http = require('http');
+var fs = require('fs');
+const PORT=8080;
+fs.readFile('./index.html', function (err, html) {
+    if (err) throw err;
+    http.createServer(function(request, response) {
+        response.writeHeader(200, {"Content-Type": "text/html"});
+        response.write(html);
+        response.end();
+    }).listen(PORT);
+});
+
+// script runs every 10 seconds
 const { JSDOM } = require( "jsdom" );
 const { window } = new JSDOM( "" );
 const $ = require( "jquery" )( window );
@@ -12,15 +26,15 @@ var Twitter = require('twitter'); // import Twitter npm module
 // pull keys from environment (pfv=pulled from environment)
 // can't store these in plaintext
 var consumer_key = process.env.consumer_key_pfv;
-var consumer_secret = process.env.counsumer_secret_pfv;
+var consumer_secret = process.env.consumer_secret_pfv;
 var access_token_key = process.env.access_token_key_pfv;
 var access_token_secret = process.env.access_token_secret_pfv;
-var npyd_app_token = process.env.npyd_app_token_pfv;
+var nypd_app_token = process.env.nypd_app_token_pfv;
 
 // create twitter auth object
 var client = new Twitter({
   consumer_key: consumer_key,
-  consumer_secret: counsumer_secret,
+  consumer_secret: consumer_secret,
   access_token_key: access_token_key,
   access_token_secret: access_token_secret
 });
@@ -33,8 +47,23 @@ function returnAjax() {
       async: false,  // Prevent heap overflow
       cache: false,  // Save resources
       dataType: "json",
-      data: {"$limit": 10, "$$app_token": npyd_app_token}  // limit = number of entries, app_token = prevent throttling and give unlimited requests
+      data: {"$limit": 50, "$$app_token": nypd_app_token}  // limit = number of entries, app_token = prevent throttling and give unlimited requests
    }).done(function(data) { return data; });
+}
+
+// create AM/PM time return function
+function timeConverter(time) {
+  var newTime = time.slice(11,16);
+  if (parseInt(newTime.slice(0,2)) < 12) {
+    if (newTime[0] == "0") {
+      return (newTime.slice(1,5).concat(" AM")).toString(); // AM Time, everything before 12
+    }
+    else {
+      return (newTime.concat(" AM")).toString(); // 10 and 11, no 0 in front
+    }
+  } else {
+      return (parseInt(newTime.slice(0,2) - 12).toString()).concat(newTime.slice(2,5), " PM"); // PM time is during or after 12
+  }
 }
 
 // sleep function for while loop (sleep nodejs import)
@@ -44,17 +73,19 @@ var sleep = require('sleep');
 // don't want to re-initlialize in while-loop everytime
 var visitedReports = []; // store already posted reports, do this to prevent dups on twitter
 
+var trackNumber = 0; // Used to number logs
+
 // keep running indefinitely, server style
 while (1) {
   // 17 is the magic number here, Ajax full report, want 17th item anyways
   var data = returnAjax(); // pull NYPD SOCRATA API Report json
 
-  // Create today's date
-  var today = new Date();  // create date object instance
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0');  // January is 0
-  var yyyy = today.getFullYear();
-  today_date = yyyy + '-' + mm + '-' + dd;  // match formatting of API dates, create today_date so we can still use time
+  // Create yesterday's date (API is not live and must be lagged a day behind)
+  // single digit months automatically padded with a 0
+  var today = new Date((new Date()).valueOf() - 1000*60*60*24*2);
+  var today_date = today.toISOString().substring(0, 10);
+  today_date = today_date.slice(8,10) + "-" + today_date.slice(5,7) + "-" + today_date.slice(0,4); // mm-dd-yyyy
+  // match formatting of API dates, create today_date so we can still use time
 
   // following code block used to prevent dupes in using a visited queue
   // once 12:00AM comes around, queue removes data points from the day before and starts fresh
@@ -99,24 +130,10 @@ while (1) {
   }
 
   if (infoStore === undefined || infoStore.length == 0) {  // if no reports, exit. 30 second refresh time in home page
-    console.log("Nothing in infoStore, next iteration!");  // server logging purposes
+    console.log(trackNumber + " - " + "Nothing in infoStore, next iteration!");  // server logging purposes
+    trackNumber++;
     sleep.sleep(10); // wait for new loop
     continue;  // start next loop
-  }
-
-  // create AM/PM time return function
-  function timeConverter(time) {
-    var newTime = time.slice(11,16);
-    if (parseInt(newTime.slice(0,2)) < 12) {
-      if (newTime[0] == "0") {
-        return (newTime.slice(1,5).concat(" AM")).toString(); // AM Time, everything before 12
-      }
-      else {
-        return (newTime.concat(" AM")).toString(); // 10 and 11, no 0 in front
-      }
-    } else {
-        return (parseInt(newTime.slice(0,2) - 12).toString()).concat(newTime.slice(2,5), " PM"); // PM time is during or after 12
-    }
   }
 
   // get JSON info on all reports and split up sections for status
@@ -124,7 +141,8 @@ while (1) {
      var final_status = "";  // init our status
 
      // add important data to our status with string concatenation
-     final_status = final_status.concat('At ', (timeConverter(infoStore[i].created_date)).toString(), ', an incident was reported by the NYPD as, ');
+     final_status = final_status.concat('Yesterday at ', (timeConverter(infoStore[i].created_date)).toString(), ' - ');
+     final_status = final_status.concat(today_date.replace(/-/g, '/'), ', an incident was reported by the NYPD as, ');
      final_status = final_status.concat((infoStore[i].descriptor).toString(), '. Location: ', (infoStore[i].incident_address).toString(), '. ');
      final_status = final_status.concat('The status of the incident is considered ', (infoStore[i].status).toString(), '.');
 
@@ -144,7 +162,8 @@ while (1) {
      });
   }
 
-  console.log("Finished tweet(s), next iteration!");  // server logging purposes
+  console.log(trackNumber+ " - " + "Finished tweet(s), next iteration!");  // server logging purposes
+  trackNumber++;
   sleep.sleep(10); // sleep for 10 seconds
 
 } // end while loop
