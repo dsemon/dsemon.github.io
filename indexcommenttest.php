@@ -127,9 +127,7 @@
               <label>Enter Email:</label>
               <input type="text" name="email" id="email">
               <br>
-              <textarea id="w3review" name="w3review" rows="4" cols="50" name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
-                Write Report Here!
-              </textarea>
+              <textarea form="comments" placeholder="Report Here!" rows="4" cols="50" name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;" ></textarea>
             </div>
               <input type="submit" value="Submit">
           </form>
