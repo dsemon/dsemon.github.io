@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cyber Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+    body, html {
+      height: 100%;
+      color: #777;
+      line-height: 1.8;
+    }
+      td {
+      margin-left: : 5px;
+      padding-bottom: 20px;
+    }
+    
+    /*Create a Parallax Effect*/
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    /* First image (Logo. Full height) */
+    .bgimg-1 {
+      background-image: url('bannerFULL.png');
+      min-height: 100%;
+    }
+    
+    .w3-wide {letter-spacing: 10px;}
+    .w3-hover-opacity {cursor: pointer;}
+
+    .Twitter {grid-area: leftside;}
+    .commentarea {grid-area: rightside;}
+
+    .HomeGrid {
+      display: grid;
+      grid-template-areas: 
+      'leftside rightside';
+      grid-template-columns: 500px;
+      grid-column-gap: 10px;
+      text-align: center;
+    }
+    /* Turn off parallax scrolling for tablets and phones */
+    @media only screen and (max-device-width: 1000000000px) {
+      .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+        min-height: 200px;
+      }
+    }
+    </style>
+    </head><body>
+    
+    <!-- First Parallax Image with Logo Text -->
+    <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+      <div class="w3-display-middle" style="white-space:nowrap;">
+      </div>
+    </div>
+    
+    <!-- Container (About Section) -->
+    
+        <div class="w3-content w3-container w3-padding-64" id="about">
+          <h3 class="w3-center">IMPORTANT UPDATES</h3>
+          <p class="w3-center"><em>Important updates pulled from different police databases will be added here.</em></p>
+    <div class="HomeGrid">
+      <div class="Twitter">
+          <p>Twitter Information</p>
+          <div class="w3-row">
+            
+        
+            <!-- Hide this text on small devices -->
+            <div class="w3-col m6 w3-hide-small w3-padding-large">
+              <p>Users tagging our twitter account will have their information added here based on most recent posts.</p><br><br>
+            </div>
+          </div>
+      </div>
+      <div class="commentarea">
+        <div class="CommentSection" id="CommentSection">
+          <p><?php
+           $dbhost = 'localhost:3306';
+           $dbuser = 'kthaokar';
+           $dbpass = 'kthaokar!';
+           $dbname = 'CISC2500';
+           
+           $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+     
+           if(! $conn ) {
+              die('Could not connect: ' . mysqli_error());
+           }
+           
+           $sql = 'SELECT name,email,comment FROM Cyber_Comments';
+           $result = mysqli_query($conn, $sql);
+                  echo mysqli_num_rows($result);
+                  echo " User Reports";
+                  if (mysqli_num_rows($result) > 0) {
+                  echo "<table border='0'>";
+                            while($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+
+                  echo "<td style='border-top: thin solid;'>" . $row['name'] . " (" . $row['email'] . ")" . " Reported: " . "</td>";
+                  echo "</tr>";
+                  echo "<tr>";
+                  echo "<td colspan='3' style='text-align: left;'>" . $row['comment'] . "</td>";
+                  echo "</tr>";
+                  
+              }
+               echo "</table>";
+           } else {
+              echo "0 results";
+           }
+           mysqli_close($conn);
+          ?></p>
+        </div>
+          <p><b>Post comments by using our form below!</b></p>
+          <form name="comments" action="comments.php" method="post">
+            <div>
+              <label>Enter Name:</label>
+              <input type="text" name="name" id="name">
+              <br>
+              <label>Enter Email:</label>
+              <input type="text" name="email" id="email">
+              <br>
+              <textarea id="w3review" name="w3review" rows="4" cols="50" name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+                Write Report Here!
+              </textarea>
+            </div>
+              <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+      <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+      <div>
+        <a href="aboutpage.html" class="w3-button w3-light-grey w3-margin"></i>About Us</a>
+      </div>
+      <div class="w3-xlarge w3-section">
+        <a href="https://www.facebook.com" class ="fa fa-facebook-official w3-hover-opacity"></a>
+        <a href="https://www.instagram.com" class ="fa fa-instagram w3-hover-opacity"></a>
+        <a href="https://www.snapchat.com" class ="fa fa-snapchat w3-hover-opacity"></a>
+        <a href="https://www.pinterest.com" class ="fa fa-pinterest w3-hover-opacity"></a>
+        <a href="https://twitter.com/fordhamcyberpa1" class ="fa fa-twitter w3-hover-opacity"></a>
+        <a href="https://www.linkedin.com" class ="fa fa-linkedin w3-hover-opacity"></a>
+
+      </div>
+    </footer>
+     
+    <script>
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+    
+    // Change style of navbar on scroll
+    window.onscroll = function() {myFunction()};
+    function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+        } else {
+            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+        }
+    }
+    
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+    </script>
+    
+    
+    
+    </body></html>
