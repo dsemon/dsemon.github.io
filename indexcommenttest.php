@@ -82,44 +82,9 @@
           </div>
       </div>
       <div class="commentarea">
-        <div class="CommentSection" id="CommentSection">
-          <p><?php
-           $dbhost = 'localhost:3306';
-           $dbuser = 'kthaokar';
-           $dbpass = 'kthaokar!';
-           $dbname = 'CISC2500';
-           
-           $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
-     
-           if(! $conn ) {
-              die('Could not connect: ' . mysqli_error());
-           }
-           
-           $sql = 'SELECT name,email,comment FROM Cyber_Comments';
-           $result = mysqli_query($conn, $sql);
-                  echo mysqli_num_rows($result);
-                  echo " User Reports";
-                  if (mysqli_num_rows($result) > 0) {
-                  echo "<table border='0'>";
-                            while($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-
-                  echo "<td style='border-top: thin solid;'>" . $row['name'] . " (" . $row['email'] . ")" . " Reported: " . "</td>";
-                  echo "</tr>";
-                  echo "<tr>";
-                  echo "<td colspan='3' style='text-align: left;'>" . $row['comment'] . "</td>";
-                  echo "</tr>";
-                  
-              }
-               echo "</table>";
-           } else {
-              echo "0 results";
-           }
-           mysqli_close($conn);
-          ?></p>
-        </div>
+      
           <p><b>Post comments by using our form below!</b></p>
-          <form name="comments" action="comments.php" method="post">
+          <form name="comments" id="comments" action="comments.php" method="post">
             <div>
               <label>Enter Name:</label>
               <input type="text" name="name" id="name">
@@ -128,11 +93,50 @@
               <input type="text" name="email" id="email">
               <br>
               <textarea form="comments" placeholder="Report Here!" rows="4" cols="50" name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;" ></textarea>
+                
             </div>
+            <br>
               <input type="submit" value="Submit">
           </form>
+        <br><br>
+          <div class="CommentSection" id="CommentSection">
+            <p><?php
+             $dbhost = 'localhost:3306';
+             $dbuser = 'kthaokar';
+             $dbpass = 'kthaokar!';
+             $dbname = 'CISC2500';
+             
+             $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+       
+             if(! $conn ) {
+                die('Could not connect: ' . mysqli_error());
+             }
+             
+             $sql = 'SELECT name,email,comment FROM Cyber_Comments';
+             $result = mysqli_query($conn, $sql);
+                    echo mysqli_num_rows($result);
+                    echo " User Reports";
+                    if (mysqli_num_rows($result) > 0) {
+                    echo "<table border='0'>";
+                              while($row = mysqli_fetch_assoc($result)) {
+                                  echo "<tr>";
+
+                    echo "<td style='border-top: thin solid;'>" . $row['name'] . " (" . $row['email'] . ")" . " Reported: " . "</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td colspan='3' style='text-align: left;'>" . $row['comment'] . "</td>";
+                    echo "</tr>";
+                    
+                }
+                 echo "</table>";
+             } else {
+                echo "0 results";
+             }
+             mysqli_close($conn);
+            ?></p>
         </div>
       </div>
+</div>
     </div>
     <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
